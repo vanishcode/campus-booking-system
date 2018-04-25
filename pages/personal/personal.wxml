@@ -1,0 +1,41 @@
+<view class="container">
+  <view class="zan-panel">
+    <view class="zan-card">
+      <view class="zan-card__thumb">
+        <!-- 微信头像 -->
+        <image src="{{wechatInfo.avatarUrl}}" mode="aspectFit" style="border-radius:10px;width:90px;height:90px"></image>
+      </view>
+      <view class="">
+        <view class="zan-card__detail">
+          <view class="zan-card__detail-row name">
+            <view class="name">
+              <!-- 微信昵称 -->
+              {{ wechatInfo.nickName}}
+            </view>
+          </view>
+          <view class="zan-card__detail-row zan-c-gray-darker time">
+            <view class="zan-card__right-col zan-c-red">{{userInfo.remain?userInfo.remain:userInfo.subscriber}}</view>
+            <view class="zan-card__left-col">
+            {{userInfo.identity=='学生'?'本周剩余次数':'本周已预约人数'}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="zan-panel">
+    <view class="zan-cell">
+      <view class="zan-cell__bd">姓名</view>
+      <view class="zan-cell__ft">{{userInfo.name}}</view>
+    </view>
+    <view class="zan-cell">
+      <view class="zan-cell__bd">{{userInfo.identity==0?'学号':'工号'}}</view>
+      <view class="zan-cell__ft">{{userInfo.number}}</view>
+    </view>
+    <view class="zan-cell">
+      <view class="zan-cell__bd">手机号</view>
+      <view class="zan-cell__ft">{{userInfo.phone}}</view>
+    </view>
+  </view>
+  <view class="zan-icon zan-icon-edit-data edit" style="color:red" bindtap="updateInfo"></view>
+</view>

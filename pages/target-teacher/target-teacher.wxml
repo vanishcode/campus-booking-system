@@ -1,0 +1,13 @@
+<import src="../../dist/tab/index.wxml" />
+
+<view class="container">
+  <template is="zan-tab" data="{{ ...config.date, componentId: 'date' }}" class="zan-c-green">
+  </template>
+  <view class="zan-panel">
+    <view wx:for="{{teacher.getInfo.subscribe}}" class="zan-cell {{item.date==config.date.list[now].title?'show':'hide'}}">
+      <view class="zan-cell__bd">{{item.startTime}}-{{item.endTime}}</view>
+      <button wx:if="{{item.startTime!=='无安排'}}" class="zan-btn zan-btn--mini zan-btn--primary zan-btn--plain" 
+      data-index="{{index}}" bindtap="order">预约</button>
+    </view>
+  </view>
+</view>

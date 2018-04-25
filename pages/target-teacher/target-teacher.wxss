@@ -1,0 +1,10 @@
+.zan-tab__item--selected .zan-tab__title {
+    color:#4B0;
+    border-bottom:2px solid #4B0;
+    }
+    .hide{
+        display: none;
+      }
+      .show {
+        display: flex;
+      }

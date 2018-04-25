@@ -1,2 +1,11 @@
-# campus-booking-system
-Software engineering curriculum design.
+# 软件工程实验
+
+技术栈：微信小程序 + zanui
+
+脚手架：wechat development tool.
+
+最后修改：2018-04-25
+
+组员：周桐   王景昊   席可
+
+说明：因为此项目仅为软件工程实验内容，一点都没有认真做，所以本人不对此开源代码负责，慎重使用和查看

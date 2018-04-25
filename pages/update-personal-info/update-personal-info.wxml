@@ -1,0 +1,25 @@
+<import src="/dist/field/index.wxml" />
+
+<view class="container">
+  <view class="zan-panel">
+    <template
+      is="zan-field"
+      data="{{ ...config.name, value:name }}"></template>
+    <template
+      is="zan-field"
+      data="{{ ...config.number,value:number }}"></template>
+    <template
+      is="zan-field"
+      data="{{ ...config.phone,value:phone}}"></template>
+  </view>
+
+  <view class="zan-btns">
+    <button
+      class="zan-btn zan-btn--primary"
+      bindtap="submitEdit">提交修改</button>
+      <button
+      class="zan-btn zan-btn--danger"
+      bindtap="cancelEdit">放弃修改</button>
+  </view>
+
+</view>

@@ -1,0 +1,21 @@
+<import src="/dist/field/index.wxml" />
+
+<view class="container">
+  <view class="zan-panel">
+    <view class="zan-cell zan-field">
+      <view class="zan-cell__hd zan-field__title">选择身份</view>
+      <picker mode="selector" class="zan-field__input zan-cell__ft" range="{{ config.identity }}" value="{{ config.identityIndex }}" bindchange="onIdentityChange">
+        {{ config.identity[config.identityIndex] }}
+      </picker>
+    </view>
+    <template is="zan-field" data="{{ ...config.name, value:name }}"></template>
+    <template is="zan-field" data="{{ ...config.number,value:number }}"></template>
+    <template is="zan-field" data="{{ ...config.phone,value:phone}}"></template>
+  </view>
+
+  <view class="zan-btns">
+    <button class="zan-btn zan-btn--primary" bindtap="submitInfo">提交</button>
+    <button class="zan-btn zan-btn--danger" bindtap="clearInput">清除</button>
+  </view>
+
+</view>

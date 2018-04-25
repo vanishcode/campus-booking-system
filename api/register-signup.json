@@ -1,0 +1,70 @@
+{
+    "signup": {
+        "openid": "oh1j40ND4KQdvjZ7O6QmwZnanvRU",
+        "identity": "学生",
+        "name": "老王",
+        "number": "18",
+        "phone": "17863136036",
+        "remain": "2",
+        "subscribe": [
+            {
+                "id": "1jkuasdhf1234",
+                "teacherName": "张老师",
+                "teacherPhone": 1888866868,
+                "openid": "4554",
+                "date": "4月24日",
+                "startTime": "9:00",
+                "endTime": "9:30"
+            },
+            {
+                "id": "1jkuas234",
+                "teacherName": "狗腿",
+                "teacherPhone": 18888,
+                "openid": "454",
+                "date": "4月25日",
+                "start": "ff",
+                "end": "dd"
+            },
+            {
+                "id": "1jkua34",
+                "teacherName": "狗",
+                "teacherPhone": 18888,
+                "openid": "44978",
+                "date": "4月29日",
+                "start": "8.00",
+                "end": "9.00"
+            }
+        ]
+    },
+    "teacher": {
+        "getInfo": {
+            "wechat": "jashjhui6yy23hgasf78y",
+            "identity": "教师",
+            "name": "狗腿张",
+            "number": "18",
+            "phone": "1786036",
+            "subscriber": "5",
+            "subscribe": [
+                {
+                    "id": "asdfff",
+                    "date": "4月26日",
+                    "startTime": "9:00",
+                    "endTime": "10:00",
+                    "state": 1,
+                    "subscriber": {
+                        "studentName": "wjh",
+                        "studentPhone": "1888866868",
+                        "openid": ""
+                    }
+                },
+                {
+                    "id": "asdf",
+                    "date": "4月25日",
+                    "startTime": "4",
+                    "endTime": "4",
+                    "state": 0
+                }
+            ]
+        }
+    }
+}

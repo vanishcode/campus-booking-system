@@ -1,0 +1,21 @@
+/* pages/personal/personal.wxss */
+.name {
+   margin: 20rpx 0;
+}
+
+.time {
+    margin: 40rpx 0 0 0;
+}
+
+.update {
+    position: fixed;
+    width: 100%;
+    bottom:10px;
+}
+
+.edit {
+    position: absolute;
+    right: 25rpx;
+    bottom: 20rpx;
+    font-size: 27px;
+}

@@ -1,0 +1,45 @@
+{
+    "s": {
+        "identity": "学生",
+        "name": "dk",
+        "number": "18",
+        "phone": "17863136036",
+        "remain": "2",
+        "subscribe": [
+            {
+                "teacherName": "狗腿张",
+                "teacherPhone": 1888866868,
+                "openid": "55+56",
+                "date": "4月20日",
+                "start": "s",
+                "end": "e"
+            }
+        ]
+    },
+    "t": {
+        "identity": "教师",
+        "name": "狗腿张",
+        "number": "18",
+        "phone": "1786036",
+        "subscriber": "5",
+        "subscribe": [
+            {
+                "date": "",
+                "start": "",
+                "end": "",
+                "state": "1",
+                "subscriber": {
+                    "studentName": "wjh",
+                    "studentPhone": "1888866868",
+                    "openid": ""
+                }
+            },
+            {
+                "date": "",
+                "start": "",
+                "end": "",
+                "state": "0"
+            }
+        ]
+    }
+}

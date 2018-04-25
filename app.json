@@ -1,0 +1,36 @@
+{
+  "pages": [
+    "pages/subscribe/subscribe",
+    "pages/personal/personal",
+    "pages/register/register",
+    "pages/publish/publish",
+    "pages/institute/institute",
+    "pages/teachers/teachers",
+    "pages/target-teacher/target-teacher",
+    "pages/update-personal-info/update-personal-info"
+  ],
+  "tabBar": {
+    "color": "#8A8A8A",
+    "selectedColor": "#4B0",
+    "list": [
+      {
+        "pagePath": "pages/subscribe/subscribe",
+        "text": "预约",
+        "iconPath": "./assets/预约0.png",
+        "selectedIconPath": "./assets/预约1.png"
+      },
+      {
+        "pagePath": "pages/personal/personal",
+        "text": "个人",
+        "iconPath": "./assets/个人0.png",
+        "selectedIconPath": "./assets/个人1.png"
+      }
+    ]
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  }
+}

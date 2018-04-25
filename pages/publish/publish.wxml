@@ -1,0 +1,25 @@
+<import src="../../dist/field/index.wxml" />
+<view class="container">
+  <view class="zan-cell zan-field">
+    <!-- 日期，选择从今天到7天后的区间中的一项 -->
+    <view class="zan-cell__hd zan-field__title">选择日期</view>
+    <picker mode="selector" class="zan-field__input zan-cell__ft" range="{{ config.date }}" value="{{ dateIndex }}" bindchange="onDateChange">
+      {{ config.date[dateIndex] }}
+    </picker>
+  </view>
+  <!-- 输入框，不是picker（TODO），用正则测试 -->
+  <template is="zan-field" data="{{ ...config.start,value:start}}"></template>
+  <!-- 输入框，不是picker（TODO），用正则测试 -->
+  <template is="zan-field" data="{{ ...config.end, value:end }}"></template>
+  <view class="zan-cell zan-field">
+    <!-- 人数应加限制 0-10 -->
+    <view class="zan-cell__hd zan-field__title">接纳人数</view>
+    <picker mode="selector" class="zan-field__input zan-cell__ft" range="{{ config.people }}" value="{{ peopleIndex }}" bindchange="onPeopleChange">
+      {{ config.people[peopleIndex] }}人
+    </picker>
+  </view>
+  <view class="zan-btns">
+    <button class="zan-btn zan-btn--primary" bindtap="publishInfo">发布</button>
+    <button class="zan-btn zan-btn--danger" bindtap="cancelPublish">放弃</button>
+  </view>
+</view>
