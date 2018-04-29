@@ -1,13 +1,2 @@
 /* pages/teacher-list/teachers.wxss */
 
-.icon-wrap {
-    width: 30%;
-    text-align: center;
-    margin: 10px 0;
-  }
-
-  .container {
-      display: flex;
-      justify-content:space-around;
-      flex-wrap: wrap;
-  }

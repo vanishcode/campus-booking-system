@@ -4,12 +4,15 @@
   <template is="zan-tab" data="{{ ...config.date, componentId: 'date' }}" class="zan-c-green">
   </template>
   <view class="zan-panel">
+     <text wx:if="{{!userInfo.subscribe[0].id}}" class="nothing">
+     (⊙ˍ⊙)无安排
+  </text>
   <view wx:for="{{userInfo.subscribe}}">
      <view class="zan-cell {{item.date==config.date.list[now].title?'show':'hide'}}">
       <view class="zan-cell__bd">{{item.startTime}}-{{item.endTime}}</view>
-      <button wx:if="{{item.start!=='无安排'}}" class="zan-btn zan-btn--mini zan-btn--primary zan-btn--plain" 
-      data-index="{{index}}" bindtap="checkDetails">详情</button>
-      <button wx:if="{{item.start!=='无安排'}}" class="zan-btn zan-btn--mini zan-btn--danger zan-btn--plain" 
+      <button class="zan-btn zan-btn--mini zan-btn--primary zan-btn--plain" 
+      data-index="{{index}}" bindtap="checkDetails" disabled="{{item.state==0}}">详情</button>
+      <button class="zan-btn zan-btn--mini zan-btn--danger zan-btn--plain" 
       data-index="{{index}}" bindtap="cancelOrder" disabled="{{item.state==1}}">取消</button>
     </view>
   </view>
@@ -17,21 +20,21 @@
   </view>
   <view class="zan-icon zan-icon-add add" style="color:#4b0" bindtap="addOrder"></view>
   <!-- 详情 -->
-  <view wx:if="{{userInfo.identity=='教师'}}" class="zan-popup {{ !showDetails ? 'zan-popup--show' : ''}}">
+  <view wx:if="{{userInfo.identity==1}}" class="zan-popup {{ showDetails ? 'zan-popup--show' : ''}}">
     <view class="zan-popup__mask" bindtap="toggleCheckDetails"></view>
-    <view class="zan-popup__container popup-example--center">
+    <view class="zan-popup__container popup-example--center" style="width:70%">
     <view class="zan-cell">
       <view class="zan-cell__bd">预约人</view>
-      <view class="zan-cell__ft">{{userInfo.subscribe[index].subscribe.studentName}} </view>
+      <view class="zan-cell__ft">{{userInfo.subscribe[index].subscriber.studentName}} </view>
     </view>
     <view class="zan-cell">
       <view class="zan-cell__bd">电话</view>
-      <view class="zan-cell__ft">{{userInfo.subscribe[index].subscribe.studentPhone}} </view>
+      <view class="zan-cell__ft">{{userInfo.subscribe[index].subscriber.studentPhone}} </view>
     </view>
   </view>
   </view>
   <!-- popup 详情 -->
-  <view wx:if="{{userInfo.identity=='学生'}}" class="zan-popup {{ showDetails ? 'zan-popup--show' : ''}}">
+  <view wx:if="{{userInfo.identity==2}}" class="zan-popup {{ showDetails ? 'zan-popup--show' : ''}}">
     <view class="zan-popup__mask" bindtap="toggleCheckDetails"></view>
     <view class="zan-popup__container popup-example--center" style="width:70%">
       <view class="zan-cell">

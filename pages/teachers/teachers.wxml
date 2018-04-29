@@ -1,14 +1,8 @@
 <view class="container">
- 
-    <view wx:for="{{  teacherList }}" class="icon-wrap" >
-    <view data-wechat="{{ item.openid}}" bindtap="chooseTeacher">
-         <image
-          src="{{item.avatar}}"
-          style="width:50px;height:50px;border-radius:5px"
-        ></image>
-      <view>{{item.name}}</view>
+  <view wx:for="{{  teacherList }}" class="icon-wrap">
+    <view class="zan-cell zan-cell--access" data-id="{{item.wechatNum}}" data-name="{{item.name}}"bindtap="chooseTeacher">
+      <view class="zan-cell__bd">{{item.name}}</view>
+      <view class="zan-cell__ft"></view>
     </view>
-      
-    </view>
-  
+  </view>
 </view>

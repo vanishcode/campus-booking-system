@@ -16,7 +16,7 @@
           <view class="zan-card__detail-row zan-c-gray-darker time">
             <view class="zan-card__right-col zan-c-red">{{userInfo.remain?userInfo.remain:userInfo.subscriber}}</view>
             <view class="zan-card__left-col">
-            {{userInfo.identity=='学生'?'本周剩余次数':'本周已预约人数'}}
+            {{userInfo.identity==2?'本周剩余次数':'本周已预约人数2'}}
             </view>
           </view>
         </view>
@@ -29,12 +29,12 @@
       <view class="zan-cell__ft">{{userInfo.name}}</view>
     </view>
     <view class="zan-cell">
-      <view class="zan-cell__bd">{{userInfo.identity==0?'学号':'工号'}}</view>
+      <view class="zan-cell__bd">{{userInfo.identity==2?'学号':'工号'}}</view>
       <view class="zan-cell__ft">{{userInfo.number}}</view>
     </view>
     <view class="zan-cell">
       <view class="zan-cell__bd">手机号</view>
-      <view class="zan-cell__ft">{{userInfo.phone}}</view>
+      <view class="zan-cell__ft">{{userInfo.tel}}</view>
     </view>
   </view>
   <view class="zan-icon zan-icon-edit-data edit" style="color:red" bindtap="updateInfo"></view>

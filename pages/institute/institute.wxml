@@ -1,7 +1,7 @@
 <!--pages/institute/institute.wxml-->
 
 <view class="container">
-  <view class="zan-cell zan-cell--access" data-id='1' bindtap="chooseId">
+  <view class="zan-cell zan-cell--access" data-id='7' bindtap="chooseId">
     <view class="zan-cell__bd">计算机科学与技术学院</view>
     <view class="zan-cell__ft"></view>
   </view>
@@ -9,7 +9,7 @@
     <view class="zan-cell__bd">汽车学院</view>
     <view class="zan-cell__ft"></view>
   </view>
-  <view class="zan-cell zan-cell--access" data-id='3' bindtap="chooseId">
+  <view class="zan-cell zan-cell--access" data-id='9' bindtap="chooseId">
     <view class="zan-cell__bd">语言文学学院</view>
     <view class="zan-cell__ft"></view>
   </view>

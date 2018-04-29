@@ -3,7 +3,7 @@ function GetDateStr(count = 0) {
   date.setDate(date.getDate() + count)
   let month = date.getMonth() + 1
   let day = date.getDate()
-  return month + '月' + day + '日'
+  return [month + '月' + day + '日', '2018-0' + month + '-' + day + 'T']
 }
 
 module.exports = {
@@ -24,13 +24,22 @@ module.exports = {
     error: false
   },
   date: [
-    GetDateStr(),
-    GetDateStr(1),
-    GetDateStr(2),
-    GetDateStr(3),
-    GetDateStr(4),
-    GetDateStr(5),
-    GetDateStr(6)
+    GetDateStr()[0],
+    GetDateStr(1)[0],
+    GetDateStr(2)[0],
+    GetDateStr(3)[0],
+    GetDateStr(4)[0],
+    GetDateStr(5)[0],
+    GetDateStr(6)[0]
   ],
-  people: [1, 2, 3, 4, 5]
+  people: [5, 10, 15, 20, 25, 30],
+  data_date: [
+    GetDateStr()[1],
+    GetDateStr(1)[1],
+    GetDateStr(2)[1],
+    GetDateStr(3)[1],
+    GetDateStr(4)[1],
+    GetDateStr(5)[1],
+    GetDateStr(6)[1]
+  ]
 }

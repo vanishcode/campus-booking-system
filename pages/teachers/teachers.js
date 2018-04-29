@@ -5,11 +5,6 @@ const host = require('../../api/api').host
 Page({
   data: {
     teacherList: [
-      {
-        openid: 'jashjhui6yy23hgasf78y',
-        avatar: 'https://avatars0.githubusercontent.com/u/20496444?v=4&s=120',
-        name: '老王'
-      }
     ]
   },
   onLoad(options) {
@@ -21,12 +16,12 @@ Page({
     // 请求数据
     wx.request({
       // 获取老师信息列表
-      url: host + options.id,
-      method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+      url: host + 'student/collegeTeachers?number='+options.id,
+      method: 'GET', 
       success: function (res) {
         wx.hideLoading()
         that.setData({
-          teacherList: res.data.teacherList
+          teacherList: res.data.data
         })
       },
       fail: function () {
@@ -43,9 +38,9 @@ Page({
     })
   },
   chooseTeacher(e) {
-    let targetTeacher = e.currentTarget.dataset.wechat
     wx.navigateTo({
-      url: `../target-teacher/target-teacher?target_teacher_wechat=${targetTeacher}`,
+      url: `../target-teacher/target-teacher?target_teacher_wechat=${e.currentTarget.dataset.id}
+      &target_teacher_name=${e.currentTarget.dataset.name}`,
     })
   }
 })

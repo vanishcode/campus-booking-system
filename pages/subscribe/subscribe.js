@@ -4,6 +4,7 @@ const app = getApp()
 const { extend, Tab } = require('../../dist/index');
 const config = require('./config')
 const host = require('../../api/api').host
+const timeTransfer = require('../../utils/timeTransfer')
 
 Page(extend({}, Tab, {
   data: {
@@ -12,12 +13,10 @@ Page(extend({}, Tab, {
     config,
     showDetails: false,
     nowSelectedDate: 0,
-    userInfo: {}
+    userInfo: {},
   },
   onShow() {
-    this.setData({
-      userInfo: app.globalData.userInfo
-    })
+    this.getUserInfo()
   },
   handleZanTabChange(e) {
     // 句柄
@@ -28,22 +27,62 @@ Page(extend({}, Tab, {
       now: selectedId - 1
     })
   },
-
+  getUserInfo() {
+    let that = this
+    let openid = wx.getStorageSync('openid')
+    wx.request({
+      url: host + 'login?wechatNum=' + openid,
+      method: 'GET',
+      success: function (res) {
+        let login_res = res
+        if (!res.data.success) {
+          wx.hideLoading()
+          wx.showModal({
+            title: '请先注册',
+            content: '点击注册',
+            success: function (res) {
+              if (res.confirm) {
+                wx.navigateTo({
+                  url: '../register/register',
+                })
+              } else if (res.cancel) {
+                wx.navigateTo({
+                  url: '../register/register',
+                })
+              }
+            }
+          })
+        }
+        else {
+          let identity = 'student'
+          if (login_res.data.data.identity == 1) identity = 'teacher'
+          wx.request({
+            url: host + identity + '/getInfo?wechatNum=' + openid,
+            method: 'GET',
+            success: function (res) {
+              Object.assign(app.globalData.userInfo, timeTransfer(res.data.data, login_res.data.data.identity))
+              that.setData({
+                userInfo: app.globalData.userInfo
+              })
+            }
+          })
+        }
+      }
+    })
+  },
   checkDetails(event) {
     this.setData({
       index: event.currentTarget.dataset.index
     })
     this.toggleCheckDetails()
   },
-  cancelOrder(index, teacherOpenid) {
-    let openid = ''
-    wx.getStorage({
-      key: 'openid',
-      success: function (res) {
-        openid = res.data
-      }
+  cancelOrder(e) {
+    this.setData({
+      index: e.currentTarget.dataset.index
     })
+    let openid = wx.getStorageSync('openid')
     let that = this
+    let cancelTeacherId = this.data.userInfo.subscribe[this.data.index].id
     wx.showModal({
       title: '提示',
       content: '你确定要取消吗？',
@@ -54,11 +93,10 @@ Page(extend({}, Tab, {
             title: '正在取消...',
             mask: true
           })
-          if (userInfo.identity == '学生') {
-            let cancelTeacherId = userInfo.subscribe[index].openid
+          if (that.data.userInfo.identity == 2) {
             wx.request({
               // TODO API
-              url: host + userInfo.subscribe[index].id,
+              url: host + `student/deleteInfo?wechatNum=${openid}&id=${cancelTeacherId}`,
               method: 'GET',
               success: function (res) {
                 wx.showToast({
@@ -67,9 +105,7 @@ Page(extend({}, Tab, {
                   duration: 1500,
                   mask: true
                 })
-                that.setData({
-                  'userInfo.subscribe[index]': null
-                })
+                that.getUserInfo()
                 wx.hideLoading()
               }
             })
@@ -77,18 +113,18 @@ Page(extend({}, Tab, {
           else {
             wx.request({
               // 教师取消自己的时间段，相当于删除
-              url: host + userInfo.subscribe[index].id,
+              url: host + `teacher/deleteInfo?wechatNum=${openid}&id=${that.data.userInfo.subscribe[that.data.index].id}`,
               method: 'GET',
               success: function (res) {
+                console.log(res)
+                
                 wx.showToast({
                   title: '取消成功',
                   icon: 'success', // loading
                   duration: 1500,
                   mask: true
                 })
-                that.setData({
-                  'userInfo.subscribe[index]': null
-                })
+                that.getUserInfo()
                 wx.hideLoading()
               }
             })
@@ -103,7 +139,7 @@ Page(extend({}, Tab, {
     })
   },
   addOrder() {
-    if (app.globalData.userInfo.identity == '学生') {
+    if (app.globalData.userInfo.identity == 2) {
       // 如果是学生
       wx.navigateTo({
         url: '../institute/institute',

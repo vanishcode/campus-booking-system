@@ -10,21 +10,18 @@ App({
     })
     wx.getStorage({
       key: 'openid',
-      success: function (res) {
-        that.getUserInfo(res.data)
-      },
       fail: function () {
         wx.login({
           success: res => {
             wx.request({
               url: `https://api.weixin.qq.com/sns/jscode2session?appid=${keys.id}&secret=${keys.secret}&js_code=${res.code}&grant_type=authorization_code`,
               method: 'GET',
-              success: function (res) {
+              success: function (res) { 
                 wx.setStorage({
                   key: "openid",
                   data: res.data.openid
                 })
-                that.getUserInfo(res.data.openid)
+                // that.getUserInfo(res.data.openid)
               }
             })
           }
@@ -57,38 +54,7 @@ App({
       }
     })
   },
-  getUserInfo(openid) {
-    let that = this
-    // 获取预约等信息
-    wx.request({
-      url: host + 'signup?openid=' + openid,
-      method: 'GET',
-      success: function (res) {
-        // 与上面不一样，请勿混淆
-        wx.hideLoading()
-        that.globalData.userInfo = res.data
 
-      },
-      fail: function (res) {
-        wx.hideLoading()
-        wx.showModal({
-          title: '请先注册',
-          content: '点击注册',
-          success: function (res) {
-            if (res.confirm) {
-              wx.navigateTo({
-                url: '../register/register',
-              })
-            } else if (res.cancel) {
-              wx.navigateTo({
-                url: '../register/register',
-              })
-            }
-          }
-        })
-      }
-    })
-  },
   globalData: {
     // 微信相关信息 包括微信名，头像地址
     wechatInfo: {},

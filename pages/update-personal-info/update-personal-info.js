@@ -11,7 +11,7 @@ Page(Object.assign({}, Zan.Field, {
     phone: ''
   },
   onShow() {
-    if (app.globalData.userInfo.identity !== '教师') {
+    if (app.globalData.userInfo.identity == 1) {
       this.setData({
         'config.number.title': '工号',
         'config.number.placeholder': '请输入工号'
@@ -20,7 +20,7 @@ Page(Object.assign({}, Zan.Field, {
     this.setData({
       name: app.globalData.userInfo.name,
       number: app.globalData.userInfo.number,
-      phone: app.globalData.userInfo.phone
+      phone: app.globalData.userInfo.tel
     })
   },
   handleZanFieldChange(e) {
@@ -31,7 +31,7 @@ Page(Object.assign({}, Zan.Field, {
     })
   },
   validateForm() {
-
+    // TODO
   },
   cancelEdit() {
     wx.navigateBack({
@@ -39,14 +39,9 @@ Page(Object.assign({}, Zan.Field, {
     })
   },
   submitEdit() {
-    let openid = ''
-    // 获取ID
-    wx.getStorage({
-      key: 'openid',
-      success: function (res) {
-        openid = res.data
-      }
-    })
+    let openid = wx.getStorageSync('openid')
+    let that = this
+    let name = encodeURIComponent(this.data.name)
     if (this.data) {
       // 表单验证
       // 修改
@@ -56,23 +51,20 @@ Page(Object.assign({}, Zan.Field, {
       title: '正在提交',
     })
     wx.request({
-      url: host,
-      data: {
-        "openid": openid,
-        "name": this.data.name,
-        "number": this.data.number,
-        "phone": this.data.phone
-      },
-      method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-      // header: {}, // 设置请求的 header
+      url: host + `personal/change?wechatNum=${openid}&name=${name}&number=${that.data.number}
+      &tel=${that.data.phone}&identity=${app.globalData.userInfo.identity}&college=${app.globalData.userInfo.college}`,
+      method: 'GET',
       success: function (res) {
-        //   wx.hideLoading()
+        wx.hideLoading()
         wx.showToast({
           title: '成功',
           icon: 'success', // loading
           duration: 1500,
           mask: true
         })
+        setTimeout(() => {
+          wx.switchTab({ url: '../personal/personal' })
+        }, 1500);
       }
     })
   }

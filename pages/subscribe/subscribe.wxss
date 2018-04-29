@@ -16,3 +16,7 @@
 .show {
   display: flex;
 }
+.nothing{
+  margin: 200px auto;
+  text-align: center
+}

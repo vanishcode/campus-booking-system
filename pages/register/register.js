@@ -41,42 +41,50 @@ Page(Object.assign({}, Zan.Field, {
     })
   },
   submitInfo() {
+    let that = this
     if (this.validateForm()) {
-      let openid = ''
-      wx.getStorage({
-        key: 'openid',
-        success: function (res) {
-          openid = res.data
-        }
-      })
-      let identity = '学生'
-      if (this.data.config.identityIndex == 1) identity = '教师'
+      let openid = wx.getStorageSync('openid')
+      let identity = 2
+      if (this.data.config.identityIndex == 1) identity = 1
+      let name = encodeURIComponent(this.data.name)
       let userInfo = {
-        identity: identity,
         name: this.data.name,
         number: this.data.number,
         phone: this.data.phone,
-        openid: openid
+        identity: identity
       }
       wx.showLoading({
         title: '正在提交',
       })
       wx.request({
-        url: host + 'signin',
-        data: userInfo,
-        method: 'POST',
+        url: host + `sign?wechatNum=${openid}&name=${name}&number=${this.data.number}&tel=${this.data.phone}&identity=${identity}&college=2`,
+        method: 'GET',
         success: function (res) {
-          app.globalData.userInfo = userInfo
-          wx.hideLoading()
-          wx.showToast({
-            title: '注册成功!',
-            icon: 'success',
-            duration: 1500,
-            mask: true
-          })
-          wx.redirectTo({
-            url: '../subscribe/subscribe'
-          })
+          //console.log(res)
+          if (!res.data.success) {
+            wx.hideLoading()
+            wx.showToast({
+              title: '注册失败!',
+              icon: 'error',
+              duration: 1500,
+              mask: true
+            })
+            // that.clearInput()
+          }
+          else {
+            app.globalData.userInfo = userInfo
+            wx.hideLoading()
+            wx.showToast({
+              title: '注册成功!',
+              icon: 'success',
+              duration: 1000,
+              mask: true
+            })
+            setTimeout(() => wx.switchTab({
+              url: '../subscribe/subscribe',
+            }), 1500)
+
+          }
         }
       })
     }
