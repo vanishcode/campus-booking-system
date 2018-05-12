@@ -13,6 +13,7 @@ App({
       fail: function () {
         wx.login({
           success: res => {
+            console.log(res)
             wx.request({
               url: `https://api.weixin.qq.com/sns/jscode2session?appid=${keys.id}&secret=${keys.secret}&js_code=${res.code}&grant_type=authorization_code`,
               method: 'GET',
@@ -28,14 +29,21 @@ App({
         })
       }
     })
+
     wx.getSetting({
       success(res) {
+        console.log(res)
+        
+        wx.hideLoading()
         if (!res.authSetting['scope.userInfo']) {
           wx.authorize({
             scope: 'scope.userInfo',
             success() {
               wx.getUserInfo({
+                withCredentials:false,
                 success: res => {
+                  console.log(res)
+                  
                   that.globalData.wechatInfo = res.userInfo
                   wx.hideLoading()
                 }

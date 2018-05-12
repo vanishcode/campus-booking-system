@@ -34,6 +34,7 @@ Page(extend({}, Tab, {
       url: host + 'login?wechatNum=' + openid,
       method: 'GET',
       success: function (res) {
+        console.log(res)
         let login_res = res
         if (!res.data.success) {
           wx.hideLoading()

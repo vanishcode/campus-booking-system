@@ -3,6 +3,7 @@
     <view class="zan-card">
       <view class="zan-card__thumb">
         <!-- 微信头像 -->
+        <open-data type="userAvatarUrl"></open-data>
         <image src="{{wechatInfo.avatarUrl}}" mode="aspectFit" style="border-radius:10px;width:90px;height:90px"></image>
       </view>
       <view class="">
@@ -10,7 +11,7 @@
           <view class="zan-card__detail-row name">
             <view class="name">
               <!-- 微信昵称 -->
-              {{ wechatInfo.nickName}}
+            <open-data type="userNickName"></open-data>
             </view>
           </view>
           <view class="zan-card__detail-row zan-c-gray-darker time">

@@ -73,6 +73,7 @@ Page(Object.assign({}, Zan.Field, {
         title: '正在发布',
         mask: true
       })
+      console.log(host + `teacher/releaseInfo?wechatNum=${publishInfo.openid}&startTime=${publishInfo.start}&endTime=${publishInfo.end}&range=${publishInfo.range}`)
       wx.request({
         // TODO API
         url: host + `teacher/releaseInfo?wechatNum=${publishInfo.openid}&startTime=${publishInfo.start}&endTime=${publishInfo.end}&range=${publishInfo.range}`,

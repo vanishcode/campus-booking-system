@@ -17,6 +17,6 @@
   display: flex;
 }
 .nothing{
-  margin: 200px auto;
+  margin: 200px 200px;
   text-align: center
 }

@@ -3,7 +3,7 @@ function GetDateStr(count = 0) {
   date.setDate(date.getDate() + count)
   let month = date.getMonth() + 1
   let day = date.getDate()
-  return [month + '月' + day + '日', '2018-0' + month + '-' + day + 'T']
+  return [month + '月' + day + '日', '2018-0' + month + '-0' + day + 'T']
 }
 
 module.exports = {
